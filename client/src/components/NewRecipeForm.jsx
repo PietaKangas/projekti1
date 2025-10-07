@@ -61,15 +61,10 @@ const NewRecipeForm = () => {
         }
     }
 
-    /*const handleChange = (e) => {
-        const {name, value} = e.target
-        setRecipe(prev => ({...prev, [name]: value}))
-    }*/
-
   return (
       <Container className="d-flex justify-content-center mt-5">
           <Card className="p-4 shadow-sm" style={{ maxWidth: "600px", width: "100%" }}>
-              <h3 className="text-center mb-4 dark">LISÄÄ RESEPTI</h3>
+              <h3 className="text-center mb-4 dark font-monospace">LISÄÄ RESEPTI</h3>
               <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="title">
                       <Form.Label>Otsikko</Form.Label>
@@ -136,6 +131,7 @@ const NewRecipeForm = () => {
                   <Button
                       type="submit"
                       className="w-100"
+                      style={{ backgroundColor: "#262fd6"}}
                   >
                       LISÄÄ RESEPTI
                   </Button>

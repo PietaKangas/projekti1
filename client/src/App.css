@@ -7,7 +7,7 @@
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: 1.0em;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -120,4 +120,26 @@
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+.profile-page {
+  background-color: white;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.custom-nav{
+  border: 2px solid #262fd6;
+  background-color: rgba(149, 28, 28, 0.57);
+  padding: 1rem;
+  text-underline-color: #262fd6;
+}
+
+.nav2{
+  border: 2px solid #262fd6;
+  background-color: #F1EFE7;
+  padding: 1rem;
+  text-underline-color: #262fd6;
 }

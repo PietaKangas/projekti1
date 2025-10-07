@@ -1,6 +1,4 @@
 import express from 'express'
-import multer from 'multer'
-import nodemailer from 'nodemailer'
 import cors from 'cors'
 const Contact = require('../models/contact')
 
@@ -74,5 +72,3 @@ contactRouter.delete('/:id', async (request, response) => {
 })
 
 module.exports = contactRouter
-
-//app.listen(3001, () => console.log('Serveri käynnissä portissa 3001'))

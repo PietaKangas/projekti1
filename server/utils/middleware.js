@@ -60,7 +60,7 @@ const authenticateUser = async (request, response, next) => {
     request.user = user
     next()
   } catch (error) {
-    next(error) // menee errorHandleriin
+    next(error)
   }
 }
 

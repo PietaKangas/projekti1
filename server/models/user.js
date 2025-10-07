@@ -24,11 +24,4 @@ userSchema.set('toJSON', {
   }
 })
 
-/*userSchema.pre('save', async function (next) {
-  if (this.isModified('password')) {
-    this.passwordHash = await bcrypt.hash(this.password, 10)
-  }
-  next()
-})*/
-
 module.exports = mongoose.model('User', userSchema)

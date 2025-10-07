@@ -29,6 +29,11 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #F1EFE7;
+  background-image: url('/tausta2.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 h1 {

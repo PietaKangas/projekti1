@@ -17,34 +17,34 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
 
     return matchesSearch && matchesCategory
   })
+  console.log(recipes.map(r => r.createdAt))
+
 
   const sorted = [...filtered].sort((a, b) => {
     if (sortOrder === "Suosituimmat") {
       return (b.likes || 0) - (a.likes || 0)
     }
     if (sortOrder === "Uusimmat") {
-      return new Date(b.createdAt) - new Date(a.createdAt)
+      return new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
     }
     if (sortOrder === "Vanhimmat") {
-      return new Date(a.createdAt) - new Date(b.createdAt)
+      return new Date(a.createdAt || 0) - new Date(b.createdAt || 0)
     }
     return 0
   })
 
   return (
       <main className="space-y-8">
-          {/* Valikot: järjestys ja suodatus */}
         <div className="flex justify-between items-start mb-6 gap-4">
           <div className="w-64">
             <input
                 type="text"
                 placeholder="Hae reseptejä"
-                className="mb-2 border p-2 bg-green-100 rounded text-center"
+                className="mb-2 border p-2 rounded text-center"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-        {/* Järjestys */}
           <div className="flex flex-col items-start gap-4">
             <select
                 value={sortOrder}
@@ -56,8 +56,6 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
               <option value="Uusimmat">Uusimmat</option>
               <option value="Vanhimmat">Vanhimmat</option>
             </select>
-
-                {/* Suodatus */}
             <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
@@ -73,14 +71,13 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
 
         <div className="mb-4"></div>
 
-          {/* Reseptilista */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
             {sorted.map(recipe => (
                 <div
                     key={recipe.id || recipe._id}
-                    className="border p-4 rounded hover:shadow-lg transition flex flex-col items-center"
+                    className="border p-4 hover:shadow-lg transition flex flex-col items-center"
                 >
-                  <Link to={`/recipes/${recipe.id || recipe._id}`} className="flex flex-col items-center w-full">
+                  <Link to={`/recipes/${recipe.id || recipe._id}`} className="flex flex-col items-center w-auto">
                     {recipe.image && (
                         <img
                             src={recipe.image || 'https://via.placeholder.com/150'}
@@ -94,7 +91,7 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
 
                   {/* Tykkäys ja lisää resepti vain kirjautuneelle */}
                   {user && (
-                      <div className="mt-4 flex gap-6 w-full">
+                      <div className="mt-4 flex gap-6 w-auto">
                         <button
                             onClick={() => handleLike(recipe.id || recipe._id)}
                             disabled={recipe.likedBy?.includes(user.id)}
@@ -107,7 +104,7 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
                           ❤️ Tykkää ({recipe.likes || 0})
                         </button>
                         <Link to="/new-recipe" className="flex-1">
-                          <button className="w-full bg-green-500 text-black px-4 py-2 rounded h-12">
+                          <button className="w-auto bg-green-500 text-black px-4 py-2 rounded h-12">
                             Lisää resepti
                           </button>
                         </Link>

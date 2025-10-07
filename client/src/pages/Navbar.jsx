@@ -1,8 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import React from "react";
-import logo from '../../../server/uploads/logo.jpg'
+import recipes from '../../../server/uploads/recipes.jpg'
 import logoutService from '../services/logout.js'
-//import loginSevice from '../services/login.js'
 
 export default function Navbar({user, setUser, setMessage, setMessageType}) {
     const navigate = useNavigate()
@@ -11,15 +10,11 @@ export default function Navbar({user, setUser, setMessage, setMessageType}) {
         logoutService(navigate, setUser, setMessage, setMessageType)
     }
 
-    /*const handleLogin = () => {
-        login(credentials)
-    }*/
-
   return (
     <header className="flex grid-cols-3 items-center justify-between py-3 px-6">
       <div className="text-2xl font-bold">
           <Link to="/">
-              <img src={logo} alt="Reseptisivun logo" className="logo" />
+              <img src={recipes} alt="Reseptisivun logo" className="logo" />
           </Link>
       </div>
 

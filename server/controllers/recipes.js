@@ -5,10 +5,17 @@ const recipesRouter = express.Router()
 const User = require('../models/user')
 const middleware = require('../utils/middleware')
 
-/*recipesRouter.get('/', async (request, response) => {
-  const recipes = await Recipe.find({}).populate('user', { username: 1 })
-  response.json(recipes)
-})*/
+recipesRouter.get('/recent', async (request, response) => {
+  try {
+    const recipes = await Recipe.find({})
+        .sort({ createdAt: -1 })
+        .limit(3)
+    response.json(recipes)
+  } catch (error) {
+    console.error(error)
+    response.status(500).json({ error: error.message })
+  }
+})
 
 recipesRouter.get('/:id', async (request, response) => {
   const recipe = await Recipe.findById(request.params.id)

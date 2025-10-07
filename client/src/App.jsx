@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import recipeService from './services/recipes'
 import loginService from './services/login'
 import userService from './services/users'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 
-import Togglable from './components/Togglable'
 import LoginForm from './pages/LoginForm'
 import RecipeForm from './pages/RecipeForm.jsx'
 import Navbar from './pages/Navbar'
 import HomePage from './pages/HomePage'
 import Profile from "./pages/Profile.jsx"
 import ContactPage from "./pages/ContactPage.jsx"
-import FilterRecipes from './pages/FilterRecipes'
 import AllRecipes from './pages/AllRecipes'
 import NewRecipeForm from "./components/NewRecipeForm.jsx"
 import Notification from "./components/Notification.jsx";
@@ -21,14 +19,9 @@ import './App.css'
 
 function App() {
   const [user, setUser] = useState(null)
-  //const [username, setUsername] = useState('')
-  //const [password, setPassword] = useState('')
-  //const [loginVisible, setLoginVisible] = useState(false)
   const [recipes, setRecipes] = useState([])
   const [newRecipe, setNewRecipe] = useState({ name: '', ingredients: '', instructions: '' })
-  //const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
-  //const [search, setSearch] = useState('')
   const [message, setMessage] = useState(null)
   const [messageType, setMessageType] = useState('success')
 
@@ -51,7 +44,6 @@ function App() {
     try {
       const loggedUser = await loginService.login({ username, password })
       setUser(loggedUser)
-      //recipeService.setToken(loggedUser.token)
       userService.setToken(loggedUser.token)
       recipeService.setToken(loggedUser.token)
       window.localStorage.setItem('loggedRecipeappUser', JSON.stringify(loggedUser))
@@ -62,12 +54,6 @@ function App() {
       setTimeout(() => setErrorMessage(null), 4000)
     }
   }
-
-  /*const handleLogout = () => {
-    window.localStorage.removeItem('loggedRecipeappUser')
-    setUser(null)
-    recipeService.setToken(null)
-  }*/
 
   const handleAddRecipe = async (e) => {
     e.preventDefault()
@@ -81,7 +67,6 @@ function App() {
       setTimeout(() => setErrorMessage(null), 4000)
     }
   }
-  //min-h-screen p-4 bg-white text-gray-900">
 
  return (
     <Router>
@@ -97,7 +82,8 @@ function App() {
         )}
 
         <Routes>
-          <Route path="/" element={<HomePage recipes={recipes} user={user} />} />
+          <Route path="/" element={<Navigate to="/recent" />} />
+          <Route path="/recent" element={<HomePage user={user} />} />
 
           <Route
             path="/recipes"

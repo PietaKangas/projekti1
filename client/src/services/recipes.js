@@ -13,6 +13,11 @@ const getAllRecipes = async () => {
   return response.data
 }
 
+const getRecent = async () => {
+  const response = await axios.get(`${baseUrl}/recent`)
+  return response.data
+}
+
 export const createRecipe = async (formData) => {
   const config = {
     headers: {
@@ -47,4 +52,4 @@ const deleteRecipe = async (id) => {
   return response.data
 }
 
-export default { getAllRecipes, createRecipe, getRecipeById, setToken, likeRecipe, deleteRecipe }
+export default { getAllRecipes, createRecipe, getRecipeById, setToken, likeRecipe, deleteRecipe, getRecent }

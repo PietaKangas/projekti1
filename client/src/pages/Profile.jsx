@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import userService from '../services/users'
-//import recipeService from '../services/recipes'
 import { useNavigate, Link} from 'react-router-dom'
 
 
@@ -35,17 +34,21 @@ const Profile = () => {
     }
 
     return (
-        <div className="profile-page">
-            <h2>Profiili</h2>
+        <div className="profile-page bg-white">
+            <h2 className= "font-monospace mb-4">
+                Profiili
+            </h2>
             <p><b>Nimi:</b> {user.name}</p>
             <p><b>Käyttäjätunnus:</b> {user.username}</p>
             <p><b>Salasana:</b> ********</p>
 
-            <div className="folders">
-                <div className="recipe-group">
-                    <h2>Lisäämäsi reseptit</h2>
+            <div className="folders mt-4">
+                <div className="recipe-group mb-4">
+                    <h2 className= "font-monospace mb-4">
+                        Lisäämäsi reseptit
+                    </h2>
                     <ul className="recipe-list">
-                        {(user.recipes ?? []).length > 0 ? (
+                    {(user.recipes ?? []).length > 0 ? (
                             (user.recipes ?? []).map(r =>
                                 <li key={r.id || r._id}>
                                     <Link to={`/recipes/${r.id || r._id}`} className="recipe-link">
@@ -59,9 +62,11 @@ const Profile = () => {
                     </ul>
                 </div>
                 <div className="recipe-group">
-                    <h2>Tykkäämäsi reseptit</h2>
+                    <h2 className="font-monospace mb-4">
+                        Tykkäämäsi reseptit
+                    </h2>
                     <ul className="recipe-list">
-                    {(user.likedRecipes ?? []).length > 0 ? (
+                        {(user.likedRecipes ?? []).length > 0 ? (
                             (user.likedRecipes ?? []).map(r =>
                                 <li key={r.id || r._id}>
                                     <Link to={`/recipes/${r.id || r._id}`} className="recipe-link">

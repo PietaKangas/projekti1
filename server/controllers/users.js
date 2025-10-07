@@ -1,9 +1,8 @@
 const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
-const middleware = require("../utils/middleware");
-//const {} = require("mongodb/src/utils");
-//const {} = require("express");
+const middleware = require("../utils/middleware")
+
 const usersRouter = express.Router()
 
 usersRouter.post('/', async (request, response) => {
