@@ -29,7 +29,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #F1EFE7;
-  background-image: url('/tausta2.jpg');
+  background-image: url('../public/tausta2.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -52,12 +52,14 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #262fd6;
+
+.my-button{
+  background-color: #262fd6;
+  color: white;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.my-button:hover {
+  background-color: #1119c3;
 }
 
 @media (prefers-color-scheme: light) {
@@ -65,17 +67,20 @@ button:focus-visible {
     color: #213547;
     background-color: #262fd6;
   }
+
   a:hover {
     color: #262fd6;
   }
   button {
-    background-color: #F1EFE7;
+    background-color: #ffffff;
     text-overline-color: #1a1a1a;
   }
 }
 nav {
-  border: 2px solid #262fd6;
-  background-color: #F1EFE7;
+  border: 2px solid #991b1f;
+  background-color: #ffffff;
   padding: 1rem;
   text-underline-color: #262fd6;
+  margin-top: 0;
+  margin-bottom: 0;
 }

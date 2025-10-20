@@ -62,9 +62,9 @@ const NewRecipeForm = () => {
     }
 
   return (
-      <Container className="d-flex justify-content-center mt-5">
+      <Container className="d-flex justify-content-center">
           <Card className="p-4 shadow-sm" style={{ maxWidth: "600px", width: "100%" }}>
-              <h3 className="text-center mb-4 dark font-monospace">LISÄÄ RESEPTI</h3>
+              <h3 className="text-center mb-4 dark font-monospace">Lisää resepti</h3>
               <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="title">
                       <Form.Label>Otsikko</Form.Label>
@@ -130,8 +130,7 @@ const NewRecipeForm = () => {
 
                   <Button
                       type="submit"
-                      className="w-100"
-                      style={{ backgroundColor: "#262fd6"}}
+                      className="w-100 my-button"
                   >
                       LISÄÄ RESEPTI
                   </Button>

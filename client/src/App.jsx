@@ -21,10 +21,12 @@ function App() {
   const [user, setUser] = useState(null)
   const [recipes, setRecipes] = useState([])
   const [newRecipe, setNewRecipe] = useState({ name: '', ingredients: '', instructions: '' })
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [message, setMessage] = useState(null)
-  const [messageType, setMessageType] = useState('success')
+  const [notification, setNotification] = useState({message: null, type: null})
 
+  const showNotification = (message, type = 'success') => {
+    setNotification({ message, type })
+    setTimeout(() => setNotification({ message: null, type: null }), 4000)
+  }
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedRecipeappUser')
@@ -50,8 +52,7 @@ function App() {
       console.log('Käyttäjä tallennettu localStorageen:', loggedUser)
     } catch (error) {
       console.error(error)
-      setErrorMessage('Käyttäjätunnus tai salasana ei täsmää :(')
-      setTimeout(() => setErrorMessage(null), 4000)
+      showNotification('Käyttäjätunnus tai salasana ei täsmää :(', 'error')
     }
   }
 
@@ -63,23 +64,16 @@ function App() {
       setNewRecipe({ name: '', ingredients: '', instructions: '', category: '', image: '', likes: '' })
     } catch (error) {
       console.error(error)
-      setErrorMessage('Virhe reseptin lisäämisessä')
-      setTimeout(() => setErrorMessage(null), 4000)
+      showNotification('Virhe reseptin lisäämisessä', 'error')
     }
   }
 
  return (
     <Router>
       <div className="container">
-        <Navbar user={user} setUser={setUser} setMessage={setMessage} setMessageType={setMessageType} />
+        <Notification message={notification.message} type={notification.type} />
 
-        <Notification message={message} type={messageType} />
-
-        {errorMessage && (
-          <div className="bg-red-100 text-red-800 p-2 mb-4 rounded">
-            {errorMessage}
-          </div>
-        )}
+        <Navbar user={user} setUser={setUser} showNotification={showNotification} />
 
         <Routes>
           <Route path="/" element={<Navigate to="/recent" />} />
@@ -116,7 +110,7 @@ function App() {
             element={
               <LoginForm
                   setUser={setUser}
-                  setErrorMessage={setErrorMessage}
+                  showNotification={showNotification}
                   onLogin={handleLogin}
               />
             }

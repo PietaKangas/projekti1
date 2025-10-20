@@ -1,13 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom'
 import React from "react";
 import recipes from '../../../server/uploads/recipes.jpg'
-import logoutService from '../services/logout.js'
 
-export default function Navbar({user, setUser, setMessage, setMessageType}) {
+export default function Navbar({user, setUser, showNotification}) {
     const navigate = useNavigate()
 
     const handleLogout = () => {
-        logoutService(navigate, setUser, setMessage, setMessageType)
+        window.localStorage.removeItem('loggedRecipeappUser')
+        setUser(null)
+        showNotification('Kirjauduit ulos onnistuneesti', 'success')
+        navigate('/')
     }
 
   return (
@@ -23,13 +25,13 @@ export default function Navbar({user, setUser, setMessage, setMessageType}) {
             <Link to="/recipes" className="px-2 py-1"> RESEPTIT </Link>
             <Link to="/contact" className="px-2 py-1"> OTA YHTEYTTÄ </Link>
                 {!user ? (
-                    <Link to="/login" className=" flex justify-self-end text-sm px-4 py-1 rounded"> KIRJAUDU / REKISTERÖIDY </Link>
+                    <Link to="/login" className=" flex justify-self-end text-sm px-4 py-1 navbutton"> KIRJAUDU / REKISTERÖIDY </Link>
                 ) : (
                     <>
-                        <Link to="/profile" className="flex space-x-4 items-center"> PROFIILI </Link>
+                        <Link to="/profile" className="flex space-x-4 px-2 py-1 items-center"> PROFIILI </Link>
                         <button
                             onClick={handleLogout}
-                            className="text-sm px-4 py-1 text-black rounded"
+                            className="text-sm px-4 py-1 navbutton"
                         >
                             KIRJAUDU ULOS
                         </button>

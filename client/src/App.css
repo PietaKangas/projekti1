@@ -61,7 +61,7 @@
 }
 
 .punainen-teksi {
-  color:darkred;
+  color: #7E1317FF;
 }
 
 .logo {
@@ -88,6 +88,7 @@
 .folders {
   display: flex;
   gap: 40px;
+  padding: 10px
 }
 
 .recipe-group h2 {
@@ -98,27 +99,27 @@
   position: fixed;
   margin-top: 20px;
   margin-left: auto;
-  background-color: rgba(168, 23, 8, 0.9);
+  background-color: #7E1317FF;
   color: white;
   border: none;
   z-index: 1000;
 }
 
 .notification-error {
-  background-color: #b38f8f;
-  color: rgba(168, 23, 8, 0.9);
+  background-color: rgba(228, 139, 139, 0.75);
+  color: #7E1317FF;
   padding: 1rem;
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
 .notification-success {
-  background-color: #84aa92;
+  background-color: rgba(157, 227, 161, 0.75);
   color: #04421f;
   padding: 1rem;
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
@@ -131,15 +132,31 @@
 }
 
 .custom-nav{
-  border: 2px solid #262fd6;
-  background-color: rgba(149, 28, 28, 0.57);
+  border: 2px solid #7E1317FF; /*6F9339FF*/
+  background-color: rgb(241, 239, 231);
   padding: 1rem;
   text-underline-color: #262fd6;
 }
 
 .nav2{
-  border: 2px solid #262fd6;
-  background-color: #F1EFE7;
+  border: 2px solid rgba(234, 217, 199, 0.53);
+  background-color: rgba(234, 217, 199, 0.71);
   padding: 1rem;
   text-underline-color: #262fd6;
+  margin-top: -2px;
+}
+
+.navbutton{
+  padding: 0.25rem 1rem; /* px-4 py-1 */
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: inherit;
+  }
+
+.navbutton:hover {
+  border-color: #262fd6;
+  background-color: #ffffff;
+  color: #000000;
 }

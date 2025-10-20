@@ -1,4 +1,5 @@
 
+/*
 const logout = (navigate, setUser, setMessage, setMessageType) => {
     window.localStorage.removeItem('loggedRecipeappUser')
     setUser(null)
@@ -8,4 +9,4 @@ const logout = (navigate, setUser, setMessage, setMessageType) => {
     setTimeout(() => setMessage(null), 3000)
 }
 
-export default logout
+export default logout*/

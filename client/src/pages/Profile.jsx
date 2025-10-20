@@ -69,7 +69,7 @@ const Profile = () => {
                         {(user.likedRecipes ?? []).length > 0 ? (
                             (user.likedRecipes ?? []).map(r =>
                                 <li key={r.id || r._id}>
-                                    <Link to={`/recipes/${r.id || r._id}`} className="recipe-link">
+                                    <Link to={`/recipes/${r.id || r._id}`} className="recipe-list">
                                         {r.title}
                                     </Link>
                                 </li>

@@ -30,10 +30,10 @@ const ContactForm = () => {
     }
 
     return (
-        <Container className="d-flex justify-content-center mt-5">
+        <Container className="d-flex justify-content-center">
             <Card className="p-4 shadow-sm" style={{maxWidth: "600px", width: "100%"}}>
                 <h3 className="text-center mb-4 dark font-monospace">
-                    OTA YHTEYTTÄ
+                    Ota yhteyttä
                 </h3>
                     <div className="mb-4"></div>
                     <Form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -44,11 +44,11 @@ const ContactForm = () => {
                             className="w-100 h-40"
                         >
                             <option value="">Valitse aihe</option>
-                            <option value="Ongelma nettisivulla">Bug report</option>
-                            <option value="Tekniikka apu">Technical support</option>
-                            <option value="Palaute">Feedback</option>
-                            <option value="">General Inquiry</option>
-                            <option value="Muu">Other</option>
+                            <option value="Ongelma nettisivulla">Ongelma nettisivulla</option>
+                            <option value="Tekniikka-apu">Tekniikka-apu</option>
+                            <option value="Palaute">Palaute</option>
+                            <option value="Yhteistyö">Yhteistyö</option>
+                            <option value="Muu">Muu</option>
                         </select>
                         <div className="mb-2"></div>
                         <input
@@ -71,8 +71,7 @@ const ContactForm = () => {
                         <div className="mb-2"></div>
                         <Button
                             type="submit"
-                            className="w-100"
-                            style={{backgroundColor: "#262fd6"}}
+                            className="w-100 my-button"
                         >
                             LÄHETÄ
                         </Button>

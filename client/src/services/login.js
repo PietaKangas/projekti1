@@ -5,6 +5,7 @@ const login = async (credentials) => {
     const response = await axios.post('/api/login', credentials)
     return response.data
   } catch (error) {
+    console.log((error))
     throw new Error('Kirjautuminen epäonnistui. Tarkista käyttäjätunnus ja salasana.')
   }
 }

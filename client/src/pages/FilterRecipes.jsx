@@ -33,6 +33,15 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
     return 0
   })
 
+  const userLiked = (recipe, user) => {
+    if (!recipe.likedBy || ! user) return false;
+    return recipe.likedBy.some(item => {
+      if (typeof item === "string") return item === user.id
+      if (typeof item === "object") return item.id=== user.id
+      return false
+    })
+  }
+
   return (
       <main className="space-y-8">
         <div className="flex justify-between items-start mb-6 gap-4">
@@ -71,48 +80,48 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
 
         <div className="mb-4"></div>
 
-          <div className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
-            {sorted.map(recipe => (
-                <div
-                    key={recipe.id || recipe._id}
-                    className="border p-4 hover:shadow-lg transition flex flex-col items-center"
-                >
-                  <Link to={`/recipes/${recipe.id || recipe._id}`} className="flex flex-col items-center w-auto">
-                    {recipe.image && (
-                        <img
-                            src={recipe.image || 'https://via.placeholder.com/150'}
-                            alt={recipe.title}
-                            className="resepti-kuva"
-                        />
-                    )}
-                    <h3 className="text-lg font-semibold">{recipe.title}</h3>
-                    <p className="text-sm text-gray-600">{recipe.category}</p>
-                  </Link>
-
-                  {/* Tykkäys ja lisää resepti vain kirjautuneelle */}
-                  {user && (
-                      <div className="mt-4 flex gap-6 w-auto">
-                        <button
-                            onClick={() => handleLike(recipe.id || recipe._id)}
-                            disabled={recipe.likedBy?.includes(user.id)}
-                            className={`flex-1 px-4 py-2 rounded h-12 ${
-                                recipe.likedBy?.includes(user.id)
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-blue-500 text-black hover:bg-blue-600"
-                            }`}
-                        >
-                          ❤️ Tykkää ({recipe.likes || 0})
-                        </button>
-                        <Link to="/new-recipe" className="flex-1">
-                          <button className="w-auto bg-green-500 text-black px-4 py-2 rounded h-12">
-                            Lisää resepti
-                          </button>
-                        </Link>
-                      </div>
+        <div className=" grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+        {sorted.map(recipe => (
+              <div
+                  key={recipe.id || recipe._id}
+                  className="border p-4 hover:shadow-lg transition flex flex-col items-center"
+              >
+                <Link to={`/recipes/${recipe.id || recipe._id}`} className="flex flex-col items-center w-auto">
+                  {recipe.image && (
+                      <img
+                          src={recipe.image || 'https://via.placeholder.com/150'}
+                          alt={recipe.title}
+                          className="resepti-kuva"
+                      />
                   )}
-                </div>
-            ))}
-          </div>
+                  <h3 className="text-lg font-semibold mt-2">{recipe.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2">{recipe.category}</p>
+                </Link>
+
+                {/* Tykkäys ja lisää resepti vain kirjautuneelle */}
+                {user && (
+                    <div className="mt-4 flex gap-6 w-auto">
+                      <button
+                          onClick={() => handleLike(recipe.id || recipe._id)}
+                          disabled={userLiked(recipe, user)}
+                          className={`flex-1 px-4 py-2 rounded h-12 ${
+                              userLiked(recipe, user)
+                                  ? "bg-gray-500 text-grey-800 cursor-default"
+                                  : "bg-blue-500 navbutton"
+                          }`}
+                      >
+                        {userLiked(recipe, user) ? "💙" : "❤️"} {recipe.likes || 0}
+                      </button>
+                      <Link to="/new-recipe" className="flex-1">
+                        <button className="w-auto text-black navbutton px-4 py-2 rounded h-12">
+                          Lisää resepti
+                        </button>
+                      </Link>
+                    </div>
+                )}
+              </div>
+        ))}
+        </div>
       </main>
   )
 }

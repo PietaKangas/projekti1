@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate} from 'react-router-dom'
 import recipeService from '../services/recipes.js'
 
-
 const RecipeForm = ({user}) => {
     const {id} = useParams()
     const [recipe, setRecipe] = useState(null)
@@ -29,9 +28,9 @@ const RecipeForm = ({user}) => {
     if (!recipe) return <div className="p-6">Ladataan reseptiä...</div>
 
     return (
-        <div className="nav2 p-6 max-w-3xl mx-auto">
+        <div className="custom-nav p-6 max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold mb-2 mt-4">{recipe.title}</h2>
-          <p className="text-sm text-gray-600 mb-2">Kategoria: {recipe.category}</p>
+          <p className="text-sm text-gray-600 mb-2 mt-2">Kategoria: {recipe.category}</p>
           {recipe.image ? (
               <img
                   src={recipe.image || 'https://via.placeholder.com/150'}
@@ -41,9 +40,9 @@ const RecipeForm = ({user}) => {
           ) : (
               <p className="text-gray-500 italic">Ei kuvaa</p>
           )}
-            <h3 className="text-xl font-semibold mb-2">Ainekset</h3>
+            <h3 className="text-xl font-semibold mb-2 mt-2">Ainekset</h3>
             <p className="mb-4 whitespace-pre-line">{recipe.ingredients}</p>
-            <h3 className="text-xl font-semibold mb-2">Valmistusohje</h3>
+            <h3 className="text-xl font-semibold mb-2 mt-2">Valmistusohje</h3>
             <p className="whitespace-pre-line">{recipe.instructions}</p>
 
             {user && recipe.user && recipe.user.username === user.username && (

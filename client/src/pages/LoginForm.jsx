@@ -4,7 +4,7 @@ import loginService from '../services/login'
 import recipeService from '../services/recipes'
 import userService from '../services/users'
 
-const LoginForm = ({ setUser, setErrorMessage }) => {
+const LoginForm = ({ setUser, showNotification }) => {
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -21,8 +21,8 @@ const LoginForm = ({ setUser, setErrorMessage }) => {
               username,
               password,
           })
-          setErrorMessage('Rekisteröinti onnistui')
-          setTimeout(() => setErrorMessage(null), 4000)
+          showNotification('Rekisteröinti onnistui', 'success')
+          setTimeout(() => showNotification(null), 4000)
           setIsRegister(false)
           setName('')
           setUsername('')
@@ -45,21 +45,22 @@ const LoginForm = ({ setUser, setErrorMessage }) => {
         }
     } catch (exception) {
         console.error('Login error:', exception)
-        setErrorMessage(isRegister
+        showNotification(isRegister
             ? 'Rekisteröinti epäonnistui'
-            : 'väärö käyttäjätunnus tai salasana')
+            : 'väärä käyttäjätunnus tai salasana', 'error')
         setTimeout(() => {
-            setErrorMessage(null)
+            showNotification(null)
         }, 4000)
     }
     }
 
   return (
       <form onSubmit={handleRegister} className="flex justify-center items-center min-h-screen border bg-gray-100">
-          <div className="mb-4"></div>
-          <h2 className="container">
+          <nav className="custom-nav">
+          <h2 className="container font-monospace mt-3 mb-4">
               {isRegister ? 'Rekisteröidy käyttäjäksi' : 'Kirjaudu sisään'}
           </h2>
+
 
           {isRegister && (
               <div className="mb-2">
@@ -120,7 +121,7 @@ const LoginForm = ({ setUser, setErrorMessage }) => {
                   </p>
               )}
           </div>
-          <div className="mb-4"></div>
+          </nav>
       </form>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import recipeService from '../services/recipes'
-import FilterRecipes from "./FilterRecipes.jsx";
+import FilterRecipes from "./FilterRecipes.jsx"
 
 const AllRecipesPage = () => {
     const [recipes, setRecipes] = useState([])
@@ -23,17 +23,31 @@ const AllRecipesPage = () => {
             console.log('Tykkäys lähetetty reseptille id:', recipeId)
             const updatedRecipe = await recipeService.likeRecipe(recipeId)
             console.log('Päivitetty resepti:', updatedRecipe)
-            setRecipes(recipes.map(r => r.id === recipeId ? updatedRecipe : r))
+            setRecipes((recipes) =>
+                recipes.map((r) =>
+                    r.id === recipeId
+                        ? {
+                            ...r,
+                            likes: (r.likes || 0) + 1,
+                            likedBy: [...(r.likedBy || []), user.id],
+                        }
+                        : r
+                    )
+                )
         } catch (error) {
-            console.error(error.response?.data?.error || 'Virhe tykkäyksessä')
-            alert(error.response?.data?.error || 'Virhe tykkäyksessä')
+            if (error.response?.data?.error === "Olet jo tykännyt tästä reseptistä") {
+                alert("Olet jo tykännyt tästä reseptistä ❤️")
+            } else {
+                console.error(error.response?.data?.error || 'Virhe tykkäyksessä')
+                alert(error.response?.data?.error || 'Virhe tykkäyksessä')
+            }
         }
     }
 
     return (
-        <div className="p-6 max-w-3xl mx-auto nav2">
+        <div className="custom-nav p-6 max-w-3xl mx-auto">
             <section className="text-center p-4">
-                <h1 style={{fontSize: '1.3rem', fontWeight: 'initial', fontFamily: 'monospace', color: '#d38c42'}}>
+                <h1 style={{fontSize: '1.3rem', fontWeight: 'initial', fontFamily: 'monospace', color: '#7E1317FF'}}>
                     Kaikki reseptit
                 </h1>
             </section>
