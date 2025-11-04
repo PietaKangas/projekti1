@@ -20,5 +20,9 @@ Teknologia:
 - autentikaatio: JSON Web Token
 - RESTful API Requests: Axios
 
-toiminto: 
-- 
+Kuvat:
+- logo ja tausta on tehty canvalla, esimerkkikuva pizza on osoitteesta: 
+
+Linkki nettisivuille: 
+
+Nettisivut eivät ole vielä valmiit, muutoksia voidaan lisätä tulevaisuudessa. 
