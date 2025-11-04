@@ -27,22 +27,6 @@ const initialUsers = [
   { name: 'Kaisa', username: 'kaisa@testi.com', passwordHash: 'salainen12345', isAdmin: false},
 ]
 
-/*const initialCarts = async (users, products) => [
-  {
-    userId: users[0]._id,
-    products: [
-      { productId: products[0]._id, quantity: 1 },
-      { productId: products[2]._id, quantity: 2 },
-    ],
-  },
-  {
-    userId: users[1]._id,
-    products: [
-      { productId: products[1]._id, quantity: 5 },
-    ],
-  },
-]*/
-
 const loginUser = async (api) => {
   const loginResponse = await api
     .post('/api/login')

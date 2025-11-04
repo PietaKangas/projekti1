@@ -7,7 +7,7 @@ const HomePage = ({ user }) => {
     useEffect(() => {
         recipeService.getRecent()
             .then(data => {
-                console.log('Recent recipes:', data)
+                //console.log('Recent recipes:', data)
                 setRecipes(data)
             })
             .catch(err => console.error('Virhe uusien reseptien haussa:', err))
@@ -15,24 +15,56 @@ const HomePage = ({ user }) => {
 
 
       return (
-          <div>
-              <nav className="custom-nav text-center p-4" style={{marginTop: '-18px'}}>
+          <main>
+              <nav className="text-center p-2">
                   <h1 style={{
-                      fontSize: '1.3rem',
-                      fontWeight: 'initial',
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
                       fontFamily: 'monospace',
-                      //marginBottom: '2rem'
+                      color: 'black',
+                      marginTop: '5rem',
+                      marginBottom: '4rem'
                   }}>
-                      Täällä voit inspiroitua muiden resepteistä ja halutessasi lisätä omia reseptejä
+                      Tervetuloa reseptisovellukseen!
                   </h1>
               </nav>
 
-              <nav className="custom-nav text-center p-4" style={{marginTop: '-2px'}}>
-                <h2 style={{textAlign: 'left', fontSize: '1rem', fontWeight: 'initial', fontFamily: 'monospace', marginBottom: '1.5rem'}}>
-                  Uusimmat reseptit
-                </h2>
+              <div className="navbar2">
+                  <h2 style={{
+                      flexBasis: '50%',
+                      paddingRight: '1rem',
+                      fontSize: '1.5rem',
+                      fontWeight: "initial",
+                      fontFamily: 'monospace',
+                      marginTop: '3rem',
+                      marginBottom: '3rem'
+                  }}>
+                      Täällä voit selata muiden lisäämiä reseptejä.<br/>
+                      <br/>
+                      Rekisteröidy käyttäjäksi ja kirjaudu sisään, niin voit itse lisätä omia reseptejä sekä tykätä
+                      suosikeistasi.
+                  </h2>
+                  <div className="raita-container">
+                  </div>
+              </div>
+
+              <div className="text-left p-4">
+                  <h2 style={{
+                      paddingLeft: '1rem',
+                      fontSize: '1.5rem',
+                      fontWeight: "bold",
+                      fontFamily: 'monospace',
+                      marginTop: '3rem',
+                      marginBottom: '2rem',
+                      textAlign: 'left'
+                  }}>
+                      Uusimmat reseptit
+                  </h2>
+              </div>
+
+              <div className="recipes text-center p-4">
                   {Array.isArray(recipes) ? recipes.slice(0, 3).map(recipe => (
-                      <div key={recipe._id || recipe.id} className="p-4 nav2">
+                      <div key={recipe._id || recipe.id} className="p-4 custom-nav cloud mb-3 mt-4">
 
                           {recipe.image && (
                               <img
@@ -48,13 +80,13 @@ const HomePage = ({ user }) => {
                   )) : null}
 
                   {!user && (
-                      <p className="mt-4 text-sm punainen-teksi text-center col-span-full">
-                          Kirjaudu sisään, jotta voit lisätä omia reseptejä ja tykätä suosikeistasi
+                      <p className="mt-5 mb-5 mb-1 text-sm punainen-teksi text-center col-span-full">
+                          Kirjaudu sisään, jotta voit lisätä omia reseptejä.
                       </p>
                   )}
-          </nav>
-</div>
-)
+              </div>
+          </main>
+      )
 }
 
 export default HomePage

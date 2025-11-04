@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import recipeService from '../services/recipes'
-import {Container, Card, Form, Button} from "react-bootstrap"
+import recipeService from '../services/recipes.js'
+import {Card, Form, Button} from "react-bootstrap"
 
 const NewRecipeForm = () => {
     const [title, setTitle] = useState('')
@@ -62,39 +62,39 @@ const NewRecipeForm = () => {
     }
 
   return (
-      <Container className="d-flex justify-content-center">
-          <Card className="p-4 shadow-sm" style={{ maxWidth: "600px", width: "100%" }}>
+      <main className="navbar nav2 w-flex justify-content-center">
+          <Card className="p-4 shadow-sm" style={{ maxWidth: "800px", width: "100%", borderRadius: "2rem" }}>
               <h3 className="text-center mb-4 dark font-monospace">Lisää resepti</h3>
               <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="title">
-                      <Form.Label>Otsikko</Form.Label>
-                      <Form.Control
+                      <Form.Label> Otsikko </Form.Label>
+                        <input
                           type="text"
                           name="title"
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
-                          className="w-100"
-                      />
+                          className="border p-2 rounded text-center w-100"
+                          />
                   </Form.Group>
-
 
                   <Form.Group className="mb-3" controlId="category">
                       <Form.Label>Kategoria</Form.Label>
-                      <Form.Control
+                      <input
                           type="text"
                           name="category"
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
-                          className="w-100"
+                          className="border p-2 rounded text-center w-100"
                       />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="image">
                       <Form.Label>Kuva</Form.Label>
-                      <Form.Control
+                      <input
                           type="file"
                           name="image/*"
                           capture="environment"
+                          className="border p-2 rounded text-center w-100"
                           onChange={(e) => {
                               if (e.target.files && e.target.files[0]) {
                                   setImage(e.target.files[0])
@@ -106,25 +106,23 @@ const NewRecipeForm = () => {
 
                   <Form.Group className="mb-3" controlId="ingredients">
                       <Form.Label>Ainekset</Form.Label>
-                      <Form.Control
-                          as="textarea"
+                      <textarea
                           rows={4}
                           name="ingredients"
                           value={ingredients}
                           onChange={(e) => setIngredients(e.target.value)}
-                          className="w-100"
+                          className="border p-2 rounded text-center w-100"
                       />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="instructions">
                       <Form.Label>Valmistusohje</Form.Label>
-                      <Form.Control
-                          as="textarea"
+                      <textarea
                           rows={6}
                           name="instructions"
                           value={instructions}
                           onChange={(e) => setInstructions(e.target.value)}
-                          className="w-100"
+                          className="mb-3 border p-2 rounded text-center w-100"
                       />
                   </Form.Group>
 
@@ -137,7 +135,7 @@ const NewRecipeForm = () => {
                   {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               </Form>
           </Card>
-      </Container>
+      </main>
   )
 }
 

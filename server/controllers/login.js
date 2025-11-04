@@ -15,6 +15,7 @@ loginRouter.post('/', async (request, response) => {
     return response.status(401).json({ error: 'Väärä käyttäjätunnus tai salasana :(' })
   }
 
+  console.log('SECRET käytössä:', process.env.SECRET)
   const token = jwt.sign(
     { username: user.username, id: user._id },
     process.env.SECRET,

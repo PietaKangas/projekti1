@@ -12,7 +12,7 @@ import HomePage from './pages/HomePage'
 import Profile from "./pages/Profile.jsx"
 import ContactPage from "./pages/ContactPage.jsx"
 import AllRecipes from './pages/AllRecipes'
-import NewRecipeForm from "./components/NewRecipeForm.jsx"
+import NewRecipeForm from "./pages/NewRecipeForm.jsx"
 import Notification from "./components/Notification.jsx";
 
 import './App.css'
@@ -21,22 +21,12 @@ function App() {
   const [user, setUser] = useState(null)
   const [recipes, setRecipes] = useState([])
   const [newRecipe, setNewRecipe] = useState({ name: '', ingredients: '', instructions: '' })
-  const [notification, setNotification] = useState({message: null, type: null})
+  const [notification, setNotification] = useState({ message: null, type: null })
 
   const showNotification = (message, type = 'success') => {
     setNotification({ message, type })
     setTimeout(() => setNotification({ message: null, type: null }), 4000)
   }
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedRecipeappUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      recipeService.setToken(user.token)
-      userService.setToken(user.token)
-    }
-  }, [])
 
   useEffect(() => {
     recipeService.getAllRecipes().then(data => setRecipes(data))
@@ -62,6 +52,7 @@ function App() {
       const added = await recipeService.createRecipe({ ...newRecipe, userId: user.id })
       setRecipes([...recipes, added])
       setNewRecipe({ name: '', ingredients: '', instructions: '', category: '', image: '', likes: '' })
+      showNotification('Resepti lisätty onnistuneesti', 'success')
     } catch (error) {
       console.error(error)
       showNotification('Virhe reseptin lisäämisessä', 'error')
@@ -70,60 +61,65 @@ function App() {
 
  return (
     <Router>
-      <div className="container">
-        <Notification message={notification.message} type={notification.type} />
+      <div className="">
+        <Notification message={notification.message} type={notification.type}/>
 
-        <Navbar user={user} setUser={setUser} showNotification={showNotification} />
+        <Navbar user={user} setUser={setUser} showNotification={showNotification}/>
 
         <Routes>
-          <Route path="/" element={<Navigate to="/recent" />} />
-          <Route path="/recent" element={<HomePage user={user} />} />
+          <Route path="/" element={<Navigate to="/recent"/>}/>
+          <Route path="/recent" element={<HomePage user={user}/>}/>
 
           <Route
-            path="/recipes"
-            element={
-              <AllRecipes
-                recipes={recipes}
-                onAddRecipe={handleAddRecipe}
-                user={user}
-              />
-            }
+              path="/recipes"
+              element={
+                <AllRecipes
+                    recipes={recipes}
+                    onAddRecipe={handleAddRecipe}
+                    user={user}
+                />
+              }
           />
 
           <Route
-            path="/recipes/:id"
-            element={<RecipeForm user={user} />}
+              path="/recipes/:id"
+              element={<RecipeForm user={user}/>}
           />
 
           <Route
               path="/new-recipe"
-              element={<NewRecipeForm />}
+              element={<NewRecipeForm/>}
           />
 
           <Route
               path="/contact"
-              element={<ContactPage />}
+              element={<ContactPage/>}
           />
 
           <Route
-            path="/login"
-            element={
-              <LoginForm
-                  setUser={setUser}
-                  showNotification={showNotification}
-                  onLogin={handleLogin}
-              />
-            }
+              path="/login"
+              element={
+                <LoginForm
+                    setUser={setUser}
+                    showNotification={showNotification}
+                    onLogin={handleLogin}
+                />
+              }
           />
           <Route
               path="/profile"
               element={
                 <ProtectedRoute user={user}>
-                  <Profile user={user} />
+                  <Profile user={user}/>
                 </ProtectedRoute>
               }
           />
         </Routes>
+        <div>
+          <p className="navbar" style={{color: "white", paddingTop: "20px", justifyContent: "center" }}>
+            Reseptisovellus, tietojenkäsittelytieteen laitos 2025
+          </p>
+        </div>
       </div>
     </Router>
  )

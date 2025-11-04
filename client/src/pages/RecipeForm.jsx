@@ -28,7 +28,7 @@ const RecipeForm = ({user}) => {
     if (!recipe) return <div className="p-6">Ladataan reseptiä...</div>
 
     return (
-        <div className="custom-nav p-6 max-w-3xl mx-auto">
+        <div className="recipe-profile-page p-6 mx-auto">
         <h2 className="text-3xl font-bold mb-2 mt-4">{recipe.title}</h2>
           <p className="text-sm text-gray-600 mb-2 mt-2">Kategoria: {recipe.category}</p>
           {recipe.image ? (

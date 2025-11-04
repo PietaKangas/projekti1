@@ -1,6 +1,5 @@
 const express = require('express')
 const Recipe = require('../models/recipe')
-const jwt = require('jsonwebtoken')
 const recipesRouter = express.Router()
 const User = require('../models/user')
 const middleware = require('../utils/middleware')

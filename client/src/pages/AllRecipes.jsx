@@ -45,9 +45,9 @@ const AllRecipesPage = () => {
     }
 
     return (
-        <div className="custom-nav p-6 max-w-3xl mx-auto">
+        <div className="nav2 p-6 mx-auto">
             <section className="text-center p-4">
-                <h1 style={{fontSize: '1.3rem', fontWeight: 'initial', fontFamily: 'monospace', color: '#7E1317FF'}}>
+                <h1 style={{fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'monospace', color: '#000000'}}>
                     Kaikki reseptit
                 </h1>
             </section>

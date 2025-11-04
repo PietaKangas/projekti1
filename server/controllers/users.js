@@ -45,12 +45,16 @@ usersRouter.get('/', async (request, response) => {
 
 usersRouter.get('/profile', middleware.authenticateUser, async (request, response) => {
   try {
+    console.log('request.user:', request.user)
+
     const user = await User.findById(request.user.id)
         .populate('recipes')   // käyttäjän lisäämät reseptit
         .populate('likedRecipes') // käyttäjän tykkäämät reseptit
     if (!user) return response.status(404).json({ error: 'Käyttäjää ei löytynyt' })
     response.json(user)
   } catch (error) {
+    console.error('Profiilin hakuvirhe:', error)
+
     response.status(500).json({ error: error.message })
   }
 })

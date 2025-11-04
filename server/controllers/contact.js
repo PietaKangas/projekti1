@@ -20,31 +20,6 @@ contactRouter.post('/api/contact', async (request, response) => {
     if (!subject || !message) {
         return response.status(400).json({message: 'Aihe ja viesti ovat pakollisia'})
     }
-/*
-    try {
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'pieta.kangas@gmail.com',
-                pass: 'salasana'
-            }
-        })
-
-        const mailOptions = {
-            from: 'mattimasa@gmail.com',
-            to: 'pieta.kangas@gmail.com',
-            subject: `[${category}] ${subject}`,
-            text: message
-        }
-
-        await transporter.sendMail(mailOptions)
-
-        response.status(200).json({ message: 'Viesti lähetetty!' })
-    } catch (error) {
-        console.error(error)
-        response.status(500).json({ message: 'Viestiä ei voitu lähettää.' })
-    }
-})*/
 
     try {
         const newMessage = new Contact({

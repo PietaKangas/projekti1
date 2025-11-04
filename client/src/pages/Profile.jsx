@@ -34,8 +34,8 @@ const Profile = () => {
     }
 
     return (
-        <div className="profile-page bg-white">
-            <h2 className= "font-monospace mb-4">
+        <div className="recipe-profile-page bg-white justify-content-center">
+            <h2 className="font-monospace mb-4 mt-4">
                 Profiili
             </h2>
             <p><b>Nimi:</b> {user.name}</p>
@@ -51,7 +51,7 @@ const Profile = () => {
                     {(user.recipes ?? []).length > 0 ? (
                             (user.recipes ?? []).map(r =>
                                 <li key={r.id || r._id}>
-                                    <Link to={`/recipes/${r.id || r._id}`} className="recipe-link">
+                                    <Link to={`/recipes/${r.id || r._id}`} className="recipe-list">
                                         {r.title}
                                     </Link>
                                 </li>
@@ -83,7 +83,7 @@ const Profile = () => {
 
             <button
                 onClick={handleDelete}
-                className="delete-button"
+                className="delete-button mb-4"
                 style={{position: 'relative' }}
             >
                 POISTA TILI

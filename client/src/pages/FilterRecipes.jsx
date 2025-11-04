@@ -17,7 +17,7 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
 
     return matchesSearch && matchesCategory
   })
-  console.log(recipes.map(r => r.createdAt))
+  //console.log(recipes.map(r => r.createdAt))
 
 
   const sorted = [...filtered].sort((a, b) => {
@@ -43,7 +43,7 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
   }
 
   return (
-      <main className="space-y-8">
+      <main className=" space-y-8 ">
         <div className="flex justify-between items-start mb-6 gap-4">
           <div className="w-64">
             <input
@@ -80,11 +80,11 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
 
         <div className="mb-4"></div>
 
-        <div className=" grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+        <div className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
         {sorted.map(recipe => (
               <div
                   key={recipe.id || recipe._id}
-                  className="border p-4 hover:shadow-lg transition flex flex-col items-center"
+                  className="custom-nav p-4 "
               >
                 <Link to={`/recipes/${recipe.id || recipe._id}`} className="flex flex-col items-center w-auto">
                   {recipe.image && (
@@ -94,8 +94,8 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
                           className="resepti-kuva"
                       />
                   )}
-                  <h3 className="text-lg font-semibold mt-2">{recipe.title}</h3>
-                  <p className="text-sm text-gray-600 mt-2">{recipe.category}</p>
+                  <h3 className="text-lg font-semibold mt-2 text-black">{recipe.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2 text-black">{recipe.category}</p>
                 </Link>
 
                 {/* Tykkäys ja lisää resepti vain kirjautuneelle */}
