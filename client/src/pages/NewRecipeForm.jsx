@@ -27,7 +27,7 @@ const NewRecipeForm = () => {
             if (error.response && error.response.data) {
                 alert(`Cloudinary Error: ${JSON.stringify(error.response.data)}`)
             } else {
-                setErrorMessage('Image upload failed!')
+                setErrorMessage('Kuvan lisäys epäonnistui!')
             }
         }
     }
@@ -68,22 +68,25 @@ const NewRecipeForm = () => {
               <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="title">
                       <Form.Label> Otsikko </Form.Label>
-                        <input
-                          type="text"
+                      <textarea
+                          rows={1}
                           name="title"
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
+                          required
+                          maxLength={50}
                           className="border p-2 rounded text-center w-100"
-                          />
+                      />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="category">
                       <Form.Label>Kategoria</Form.Label>
-                      <input
-                          type="text"
-                          name="category"
+                      <textarea
+                          rows={1}                          name="category"
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
+                          required
+                          maxLength={20}
                           className="border p-2 rounded text-center w-100"
                       />
                   </Form.Group>
@@ -92,8 +95,8 @@ const NewRecipeForm = () => {
                       <Form.Label>Kuva</Form.Label>
                       <input
                           type="file"
-                          name="image/*"
-                          capture="environment"
+                          accept="image/*"
+                          //capture="environment"
                           className="border p-2 rounded text-center w-100"
                           onChange={(e) => {
                               if (e.target.files && e.target.files[0]) {
@@ -111,6 +114,8 @@ const NewRecipeForm = () => {
                           name="ingredients"
                           value={ingredients}
                           onChange={(e) => setIngredients(e.target.value)}
+                          required
+                          maxLength={300}
                           className="border p-2 rounded text-center w-100"
                       />
                   </Form.Group>
@@ -122,6 +127,8 @@ const NewRecipeForm = () => {
                           name="instructions"
                           value={instructions}
                           onChange={(e) => setInstructions(e.target.value)}
+                          required
+                          maxLength={1000}
                           className="mb-3 border p-2 rounded text-center w-100"
                       />
                   </Form.Group>

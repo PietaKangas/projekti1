@@ -43,6 +43,12 @@
   font-weight: bold;
 }
 
+.punainen-teksi2 {
+  font-size: small;
+  color: rgb(203, 14, 64);
+  font-family: inherit;
+}
+
 .recipe-list {
   list-style: none;
   padding: 10px;

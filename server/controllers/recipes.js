@@ -56,7 +56,6 @@ recipesRouter.post('/', middleware.authenticateUser, async (request, response) =
 
 recipesRouter.put('/:id', async (request, response, next) => {
   const body = request.body
-  //let imageUrl = body.image
 
   const updatedData = {
     title: body.title,

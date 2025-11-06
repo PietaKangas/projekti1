@@ -115,11 +115,11 @@ function App() {
               }
           />
         </Routes>
-        <div>
-          <p className="navbar" style={{color: "white", paddingTop: "20px", justifyContent: "center" }}>
+        <footer>
+          <p className="navbar" style={{color: "white", paddingTop: "20px", justifyContent: "center", alignItems: "flex-end"}}>
             Reseptisovellus, tietojenkäsittelytieteen laitos 2025
           </p>
-        </div>
+        </footer>
       </div>
     </Router>
  )

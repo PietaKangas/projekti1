@@ -33,11 +33,11 @@ const HomePage = ({ user }) => {
                   <h2 style={{
                       flexBasis: '50%',
                       paddingRight: '1rem',
-                      fontSize: '1.5rem',
+                      fontSize: 'clamp(1rem, 2vw + 0.3rem, 2.0rem)',
                       fontWeight: "initial",
                       fontFamily: 'monospace',
                       marginTop: '3rem',
-                      marginBottom: '3rem'
+                      marginBottom: '3rem',
                   }}>
                       Täällä voit selata muiden lisäämiä reseptejä.<br/>
                       <br/>
@@ -74,8 +74,6 @@ const HomePage = ({ user }) => {
                               />
                           )}
                           <h3 className="text-lg font-bold">{recipe.title}</h3>
-                          <p className="text-sm text-gray-700">{recipe.ingredients}</p>
-                          <p className="mt-2">{recipe.instructions}</p>
                       </div>
                   )) : null}
 

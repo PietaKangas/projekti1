@@ -13,11 +13,39 @@ const LoginForm = ({ setUser, showNotification }) => {
     const navigate = useNavigate()
     const [isRegister, setIsRegister] = useState(false)
 
+    const [nameError, setNameError] = useState('')
+    const [usernameError, setUsernameError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
 
   const handleRegister = async (event) => {
     event.preventDefault()
+
+      setNameError('')
+      setUsernameError('')
+      setPasswordError('')
+
+      let valid = true
+
     try {
       if (isRegister){
+          if (name.length > 20) {
+              setNameError('Enintään 20 merkkiä')
+              valid = false
+          }
+          if (username.length > 30) {
+              setUsernameError('Enintään 30 merkkiä')
+              valid = false
+          }
+          const passwordEhto = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+          if (!passwordEhto.test(password)) {
+              setPasswordError('Salasanan tulee sisältää isoja ja\npieniä kirjaimia, numeroita sekä\noltava vähintään 8 merkkiä pitkä.')
+              valid = false
+          } else {
+              setPasswordError('')
+          }
+
+          if (!valid) return
+
           await userService.register({
               name,
               username,
@@ -29,6 +57,7 @@ const LoginForm = ({ setUser, showNotification }) => {
           setName('')
           setUsername('')
           setPassword('')
+
       } else {
           const user = await loginService.login({
               username: username,
@@ -69,9 +98,11 @@ const LoginForm = ({ setUser, showNotification }) => {
                               type="text"
                               placeholder="Nimi"
                               value={name}
-                              onChange={({target}) => setName(target.value)}
+                              onChange={(e) => setName(e.target.value)}
+                              required
                               className="block mb-1 font-medium text-gray-700"
                           />
+                          {nameError && <p className="punainen-teksi2">{nameError}</p>}
                       </div>
                   )}
                   <div className="mb-2">
@@ -80,8 +111,10 @@ const LoginForm = ({ setUser, showNotification }) => {
                           placeholder="Käyttäjätunnus"
                           value={username}
                           onChange={({target}) => setUsername(target.value)}
+                          required
                           className="block mb-1 font-medium text-gray-700"
                       />
+                      {usernameError && <p className="punainen-teksi2">{usernameError}</p>}
                   </div>
                   <div className="mb-2">
                       <input
@@ -89,8 +122,10 @@ const LoginForm = ({ setUser, showNotification }) => {
                           placeholder="Salasana"
                           value={password}
                           onChange={({target}) => setPassword(target.value)}
+                          required
                           className="block mb-1 font-medium text-gray-700"
                       />
+                      {passwordError && <pre className="punainen-teksi2 leading-snug pl-3">{passwordError}</pre>}
                   </div>
                   <p>
                   <button
