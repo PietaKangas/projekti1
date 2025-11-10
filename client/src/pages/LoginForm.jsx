@@ -87,11 +87,11 @@ const LoginForm = ({ setUser, showNotification }) => {
 
   return (
       <main className="navbar nav2 w-full justify-content-center">
-          <Card className="p-4" style={{maxWidth: "800px", width: "100%", borderRadius: "2rem"}}>
+          <Card className="p-4" style={{maxWidth: "1000px", width: "100%", borderRadius: "2rem", border:"solid #CB0E40FF"}}>
               <Form onSubmit={handleRegister} className=" w-full justify-center items-center">
-                  <h2 className="text-center mb-4 dark font-monospace">
+                  <h3 className="text-center mb-4 mt-2 dark font-monospace">
                       {isRegister ? 'Rekisteröidy käyttäjäksi' : 'Kirjaudu sisään'}
-                  </h2>
+                  </h3>
                   {isRegister && (
                       <div className="mb-2">
                           <input
@@ -100,7 +100,7 @@ const LoginForm = ({ setUser, showNotification }) => {
                               value={name}
                               onChange={(e) => setName(e.target.value)}
                               required
-                              className="block mb-1 font-medium text-gray-700"
+                              className="w-100"/*"block mb-1 font-medium text-gray-700"*/
                           />
                           {nameError && <p className="punainen-teksi2">{nameError}</p>}
                       </div>
@@ -112,7 +112,7 @@ const LoginForm = ({ setUser, showNotification }) => {
                           value={username}
                           onChange={({target}) => setUsername(target.value)}
                           required
-                          className="block mb-1 font-medium text-gray-700"
+                          className="w-100"/*"block mb-1 font-medium text-gray-700"*/
                       />
                       {usernameError && <p className="punainen-teksi2">{usernameError}</p>}
                   </div>
@@ -123,24 +123,24 @@ const LoginForm = ({ setUser, showNotification }) => {
                           value={password}
                           onChange={({target}) => setPassword(target.value)}
                           required
-                          className="block mb-1 font-medium text-gray-700"
+                          className="w-100"/*"block mb-2 font-medium text-gray-700"*/
                       />
                       {passwordError && <pre className="punainen-teksi2 leading-snug pl-3">{passwordError}</pre>}
                   </div>
                   <p>
                   <button
                       type="submit"
-                      className="text-black px-4 py-2 navbutton">{isRegister ? 'Rekisteröidy' : 'Kirjaudu'}
+                      className="mt-2 text-black py-2 navbutton">{isRegister ? 'Rekisteröidy' : 'Kirjaudu'}
                   </button>
                   </p>
 
-                  <div className="mt-2 text-center">
+                  <div className="text-center">
                       {isRegister ? (
                           <p>
                               Onko sinulla jo tili?{' '}
                               <button
                                   type="button"
-                                  className="navbutton text-black ms-1"
+                                  className="navbutton text-black ms-2"
                                   onClick={() => setIsRegister(false)}
                               >
                                   Kirjaudu sisään
@@ -151,7 +151,7 @@ const LoginForm = ({ setUser, showNotification }) => {
                               Ei tiliä?{' '}
                               <button
                                   type="button"
-                                  className="navbutton ms-1"
+                                  className="navbutton ms-2"
                                   onClick={() => setIsRegister(true)}
                               >
                                   Rekisteröidy

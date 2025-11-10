@@ -84,7 +84,7 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
         {sorted.map(recipe => (
               <div
                   key={recipe.id || recipe._id}
-                  className="custom-nav p-4 "
+                  className="custom-nav p-4"
               >
                 <Link to={`/recipes/${recipe.id || recipe._id}`} className="flex flex-col items-center w-auto">
                   {recipe.image && (
@@ -94,33 +94,33 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
                           className="resepti-kuva"
                       />
                   )}
-                  <h3 className="text-lg font-semibold mt-2 text-black">{recipe.title}</h3>
+                  <h3 className="text-lg font-semibold mt-3">{recipe.title}</h3>
                   <p className="text-sm text-gray-600 mt-2 text-black">{recipe.category}</p>
                 </Link>
 
-                {/* Tykkäys ja lisää resepti vain kirjautuneelle */}
+                {/* Tykkäys vain kirjautuneelle */}
                 {user && (
-                    <div className="mt-4 flex gap-6 w-auto">
-                      <button
-                          onClick={() => handleLike(recipe.id || recipe._id)}
-                          disabled={userLiked(recipe, user)}
-                          className={`flex-1 px-4 py-2 rounded h-12 ${
-                              userLiked(recipe, user)
-                                  ? "bg-gray-500 text-grey-800 cursor-default"
-                                  : "bg-blue-500 navbutton"
-                          }`}
-                      >
-                        {userLiked(recipe, user) ? "💙" : "❤️"} {recipe.likes || 0}
-                      </button>
-                      <Link to="/new-recipe" className="flex-1">
-                        <button className="w-auto text-black navbutton px-4 py-2 rounded h-12">
-                          Lisää resepti
-                        </button>
-                      </Link>
-                    </div>
+                    <button
+                        onClick={() => handleLike(recipe.id || recipe._id)}
+                        disabled={userLiked(recipe, user)}
+                        className={`flex-1 px-4 py-2 rounded h-12 ${
+                          userLiked(recipe, user)
+                              ? "bg-gray-500 text-grey-800 cursor-default"
+                              : "bg-blue-500 navbutton"
+                        }`}
+                    >
+                      {userLiked(recipe, user) ? "❤" : "️🤍"} {recipe.likes || 0}
+                    </button>
                 )}
               </div>
         ))}
+          {user && (
+              <Link to="/new-recipe">
+                <button className="w-auto text-black fw-semibold navbutton px-4 py-2 rounded h-12 mt-4">
+                  Lisää resepti
+                </button>
+              </Link>
+          )}
         </div>
       </main>
   )

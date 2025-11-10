@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import recipeService from '../services/recipes'
+import { Link } from 'react-router-dom'
+
 
 const HomePage = ({ user }) => {
     const [recipes, setRecipes] = useState([])
@@ -30,10 +32,11 @@ const HomePage = ({ user }) => {
               </nav>
 
               <div className="navbar2">
+                  {!user && (
                   <h2 style={{
                       flexBasis: '50%',
                       paddingRight: '1rem',
-                      fontSize: 'clamp(1rem, 2vw + 0.3rem, 2.0rem)',
+                      fontSize: 'clamp(1rem, 2vw + 0.4rem, 1.8rem)',
                       fontWeight: "initial",
                       fontFamily: 'monospace',
                       marginTop: '3rem',
@@ -44,6 +47,26 @@ const HomePage = ({ user }) => {
                       Rekisteröidy käyttäjäksi ja kirjaudu sisään, niin voit itse lisätä omia reseptejä sekä tykätä
                       suosikeistasi.
                   </h2>
+                      )}
+                  {user && (
+                      <h3 style={{
+                          flexBasis: '50%',
+                          paddingRight: '1rem',
+                          fontSize: 'clamp(1rem, 2vw + 0.4rem, 1.8rem)',
+                          fontWeight: "initial",
+                          fontFamily: 'monospace',
+                          marginTop: '3rem',
+                          marginBottom: '3rem',
+                      }}>
+                          Kirjautuneena voit lisätä omia reseptejä.
+                          <br/>
+                          <Link to="/new-recipe">
+                              <button className="w-auto text-black fw-semibold navbutton px-4 py-2 rounded h-12 mt-4">
+                                  Lisää resepti
+                              </button>
+                          </Link>
+                      </h3>
+                  )}
                   <div className="raita-container">
                   </div>
               </div>
@@ -64,16 +87,18 @@ const HomePage = ({ user }) => {
 
               <div className="recipes text-center p-4">
                   {Array.isArray(recipes) ? recipes.slice(0, 3).map(recipe => (
-                      <div key={recipe._id || recipe.id} className="p-4 custom-nav cloud mb-3 mt-4">
+                      <div key={recipe._id || recipe.id} className="p-4 custom-nav mb-3 mt-4">
 
-                          {recipe.image && (
-                              <img
-                                  src={recipe.image || 'https://via.placeholder.com/150'}
-                                  alt={recipe.title}
-                                  className="resepti-kuva"
-                              />
-                          )}
-                          <h3 className="text-lg font-bold">{recipe.title}</h3>
+                          <Link to={`/recipes/${recipe.id || recipe._id}`} className="flex flex-col items-center w-auto">
+                              {recipe.image && (
+                                  <img
+                                      src={recipe.image || 'https://via.placeholder.com/150'}
+                                      alt={recipe.title}
+                                      className="resepti-kuva"
+                                  />
+                              )}
+                              <h3 className="text-lg font-bold mt-2">{recipe.title}</h3>
+                          </Link>
                       </div>
                   )) : null}
 

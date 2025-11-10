@@ -43,7 +43,7 @@ const Profile = () => {
             <p><b>Salasana:</b> ********</p>
 
             <div className="folders mt-4">
-                <div className="recipe-group mb-4">
+                <div className="mb-2">
                     <h2 className= "font-monospace mb-4">
                         Lisäämäsi reseptit
                     </h2>
@@ -60,8 +60,13 @@ const Profile = () => {
                             <li>Ei reseptejä</li>
                         )}
                     </ul>
+                    <Link to="/new-recipe">
+                        <button className="w-auto text-black fw-semibold navbutton px-4 py-2 rounded h-12 mb-2">
+                            Lisää resepti
+                        </button>
+                    </Link>
                 </div>
-                <div className="recipe-group">
+                <div className="mb-2">
                     <h2 className="font-monospace mb-4">
                         Tykkäämäsi reseptit
                     </h2>
