@@ -4,7 +4,6 @@ import logoo from '../assets/logoo.png'
 
 export default function Navbar({user, setUser, showNotification}) {
     const navigate = useNavigate()
- //   const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = () => {
         window.localStorage.removeItem('loggedRecipeappUser')

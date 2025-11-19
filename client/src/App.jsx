@@ -126,5 +126,3 @@ function App() {
 }
 
 export default App
-
- /*className="navbar" style={{color: "white", paddingTop: "20px", justifyContent: "center", alignItems: "flex-end"}}>*/

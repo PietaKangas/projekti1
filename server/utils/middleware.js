@@ -64,17 +64,9 @@ const authenticateUser = async (request, response, next) => {
   }
 }
 
-const authorizeAdmin = (request, response, next) => {
-  if (!request.user || request.user.isAdmin !== true) {
-    return response.status(403).json({ error: 'ei pääsyä' })
-  }
-  next()
-}
-
 module.exports = {
   requestLogger,
   unknownEndpoint,
   errorHandler,
-  authenticateUser,
-  authorizeAdmin
+  authenticateUser
 }

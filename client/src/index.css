@@ -99,7 +99,6 @@ button {
   justify-content: space-between;
   padding: 12px 25px;
   color: #000000;
-  text-underline-color: #203780;
   background-image: url('assets/tausta.jpg');
   background-attachment: fixed;
 }

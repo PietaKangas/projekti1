@@ -9,10 +9,10 @@ usersRouter.post('/', async (request, response) => {
   try{
     const { name, username, password } = request.body
 
-    if (!username || !password) {
-      return response.status(400).json({ error: 'Käyttäjänimi ja salasana ovat pakollisia' })
+    if (!name || !username || !password) {
+      return response.status(400).json({ error: 'Kaikki kentät ovat ovat pakollisia' })
     }
-    else if (!password || password.length < 3) {
+    else if (!password || password.length < 7) {
       return response.status(400).json({ error: 'Salasana on liian lyhyt' })
     }
   
@@ -23,14 +23,16 @@ usersRouter.post('/', async (request, response) => {
 
     const passwordHash = await bcrypt.hash(password, 10)
 
-    const user = new User({ name, username, passwordHash })
+    const user = new User({ name, username, passwordHash, recipes: [], likedRecipes: []})
 
-      const savedUser = await user.save()
+    const savedUser = await user.save()
+
       response.status(201).json({
         id: savedUser._id,
         username: savedUser.username,
         name: savedUser.name,
-        recipes: savedUser.recipes
+        recipes: savedUser.recipes,
+        likedRecipes: savedUser.likedRecipes
       })
       
   } catch (error) {
@@ -66,27 +68,6 @@ usersRouter.delete('/profile', middleware.authenticateUser, async (request, resp
   } catch (error) {
     response.status(500).json({ error: error.message })
   }
-})
-
-usersRouter.post('/register', async (request, response) => {
-  const {name, username, password} = request.body
-
-  if (!password || password.length < 8) {
-    return response.status(400).json({error: 'Salasana tulee olla väh 8 merkkiä pitkä'})
-  }
-
-  const saltRounds = 10
-  const passwordHash = await bcrypt.hash(password, saltRounds)
-  const user = new User({
-    name,
-    username,
-    passwordHash,
-    recipes: [],
-    likedRecipes: []
-  })
-
-  const savedUser = await user.save()
-  response.status(201).json(savedUser)
 })
 
 module.exports = usersRouter

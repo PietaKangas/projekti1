@@ -30,9 +30,9 @@ const ContactForm = () => {
     }
 
     return (
-        <div className="navbar nav2 w-full justify-content-center">
-            <Card className="p-4" style={{maxWidth: "1000px", width: "100%", borderRadius: "2rem", border:"solid #CB0E40FF"}}>
-                <h3 className="text-center mb-2 mt-2 dark font-monospace">
+        <div className="navbar nav2 justify-content-center">
+            <Card className="p-4" style={{maxWidth: "1000px", width: "100%", borderRadius: "1rem", border:"solid #CB0E40FF"}}>
+                <h3 className="mt-2 font-monospace">
                     Ota yhteyttä
                 </h3>
                     <div className="mb-4"></div>
@@ -76,8 +76,7 @@ const ContactForm = () => {
                             LÄHETÄ
                         </Button>
                     </Form>
-                    {status && <p className="mt-4">{status}</p>}
-                    <div className="mb-3"></div>
+                    {status && <p className="mt-4 punainen-teksi2">{status}</p>}
             </Card>
         </div>
 )

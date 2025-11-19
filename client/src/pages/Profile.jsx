@@ -42,6 +42,14 @@ const Profile = () => {
             <p><b>Käyttäjätunnus:</b> {user.username}</p>
             <p><b>Salasana:</b> ********</p>
 
+            <Link to="/new-recipe">
+                <button className="w-auto fw-semibold navbutton px-4 py-2 rounded h-12 mt-2"
+                       style={{ color: "#CB0E40" }}
+                >
+                    Lisää uusi resepti
+                </button>
+            </Link>
+
             <div className="folders mt-4">
                 <div className="mb-2">
                     <h2 className= "font-monospace mb-4">
@@ -60,11 +68,6 @@ const Profile = () => {
                             <li>Ei reseptejä</li>
                         )}
                     </ul>
-                    <Link to="/new-recipe">
-                        <button className="w-auto text-black fw-semibold navbutton px-4 py-2 rounded h-12 mb-2">
-                            Lisää resepti
-                        </button>
-                    </Link>
                 </div>
                 <div className="mb-2">
                     <h2 className="font-monospace mb-4">
@@ -88,8 +91,8 @@ const Profile = () => {
 
             <button
                 onClick={handleDelete}
-                className="delete-button mb-4"
-                style={{position: 'relative' }}
+                className="delete-button mb-2 mt-3"
+               style={{position: 'relative' }}
             >
                 POISTA TILI
             </button>

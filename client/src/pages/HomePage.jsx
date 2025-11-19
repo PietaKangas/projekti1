@@ -58,7 +58,7 @@ const HomePage = ({ user }) => {
                           marginTop: '3rem',
                           marginBottom: '3rem',
                       }}>
-                          Kirjautuneena voit lisätä omia reseptejä.
+                          Kirjautuneena voit lisätä omia reseptejä
                           <br/>
                           <Link to="/new-recipe">
                               <button className="w-auto text-black fw-semibold navbutton px-4 py-2 rounded h-12 mt-4">

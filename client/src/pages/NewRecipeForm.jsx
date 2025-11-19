@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import axios from 'axios'
 import recipeService from '../services/recipes.js'
 import {Card, Form, Button} from "react-bootstrap"
@@ -11,6 +11,7 @@ const NewRecipeForm = () => {
     const [image, setImage] = useState('')
     const [uploading, setUploading] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null)
+    const fileInputRef = useRef(null)
 
     const uploadImage = async (file) => {
         setUploading(true)
@@ -53,17 +54,18 @@ const NewRecipeForm = () => {
         setIngredients('')
         setInstructions('')
         setCategory('')
-        setImage('')
+        setImage(null)
             alert('Resepti lisätty onnistuneesti!')
         } catch (err) {
             console.error('Reseptin tallennus epäonnistui:', err)
             alert('Reseptin tallennus epäonnistui!')
         }
+        fileInputRef.current.value = "";
     }
 
   return (
       <main className="navbar nav2 w-flex justify-content-center">
-          <Card className="p-4 shadow-sm" style={{ maxWidth: "800px", width: "100%", borderRadius: "2rem" }}>
+          <Card className="p-4 shadow-sm" style={{ maxWidth: "800px", width: "100%", borderRadius: "1rem", border: "solid #CB0E40FF" }}>
               <h3 className="text-center mb-4 dark font-monospace">Lisää resepti</h3>
               <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="title">
@@ -96,6 +98,7 @@ const NewRecipeForm = () => {
                       <input
                           type="file"
                           accept="image/*"
+                          ref={fileInputRef}
                           //capture="environment"
                           className="border p-2 rounded text-center w-100"
                           onChange={(e) => {
