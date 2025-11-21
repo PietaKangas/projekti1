@@ -84,7 +84,8 @@ const NewRecipeForm = () => {
                   <Form.Group className="mb-3" controlId="category">
                       <Form.Label>Kategoria</Form.Label>
                       <textarea
-                          rows={1}                          name="category"
+                          rows={1}
+                          name="category"
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
                           required

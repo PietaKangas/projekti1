@@ -42,10 +42,10 @@ const HomePage = ({ user }) => {
                       marginTop: '3rem',
                       marginBottom: '3rem',
                   }}>
-                      Täällä voit selata muiden lisäämiä reseptejä.<br/>
+                      Täällä voit selata muiden lisäämiä reseptejä<br/>
                       <br/>
                       Rekisteröidy käyttäjäksi ja kirjaudu sisään, niin voit itse lisätä omia reseptejä sekä tykätä
-                      suosikeistasi.
+                      suosikeistasi
                   </h2>
                       )}
                   {user && (
@@ -103,7 +103,7 @@ const HomePage = ({ user }) => {
                   )) : null}
 
                   {!user && (
-                      <p className="mt-5 mb-5 mb-1 text-sm punainen-teksi text-center col-span-full">
+                      <p className="mt-5 mb-5 mb-1 text-sm punainen-teksi text-center">
                           Kirjaudu sisään, jotta voit lisätä omia reseptejä.
                       </p>
                   )}

@@ -103,7 +103,7 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
                     <p className="text-sm text-black">{recipe.category}</p>
                   </Link>
 
-                  {user?.token && (
+                  {!!user?.token && (
                       <button
                           onClick={() => handleLike(recipe.id || recipe._id)}
                           disabled={userLiked(recipe, user)}
@@ -113,7 +113,7 @@ const FilterRecipes = ({ recipes, search, setSearch, user, handleLike }) => {
                                   : "navbutton"
                           }`}
                       >
-                        {userLiked(recipe, user) ? "❤" : "️🤍"} {recipe.likes || 0}
+                        {userLiked(recipe, user) ? "❤️" : "️🤍"} {recipe.likes || 0}
                       </button>
                   )}
                 </div>

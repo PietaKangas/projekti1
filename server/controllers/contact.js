@@ -1,12 +1,12 @@
-import express from 'express'
-import cors from 'cors'
+const express = require('express')
+const cors = require('cors')
 const Contact = require('../models/contact')
-
 const contactRouter = express.Router()
+
 contactRouter.use(cors())
 contactRouter.use(express.json())
 
-contactRouter.get('/api/contact', async (request, response) => {
+contactRouter.get('/', async (request, response) => {
     try {
         const contact = await Contact.find({})
         response.json(contact)
@@ -14,7 +14,7 @@ contactRouter.get('/api/contact', async (request, response) => {
         next(error)
     }
 })
-contactRouter.post('/api/contact', async (request, response) => {
+contactRouter.post('/', async (request, response) => {
     const { name, category, subject, message } = request.body
     const userEmail = request.user?.email || 'Tuntematon'
     if (!subject || !message) {
@@ -30,10 +30,10 @@ contactRouter.post('/api/contact', async (request, response) => {
             message,
         })
         await newMessage.save()
-        response.status(201).json({ message: 'Message received and saved successfully!' })
+        response.status(201).json({ message: 'Viesti lähetettii onnistuneesti!' })
     } catch (error) {
-        console.error('Error saving message to database:', error)
-        response.status(500).json({ message: 'Failed to save the message. Please try again later.' })
+        console.error('Virhe viesti tallentamisessa:', error)
+        response.status(500).json({ message: 'Viestin tallennus epäonnistui. Yritä myöhemmin uudelleen.' })
     }
 })
 
