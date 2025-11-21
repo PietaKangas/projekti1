@@ -99,7 +99,7 @@ function App() {
           <Route
               path="/new-recipe"
               element={
-              <ProtectedRoute>
+              <ProtectedRoute user={user}>
                 <NewRecipeForm user={user}/>
               </ProtectedRoute>
               }
