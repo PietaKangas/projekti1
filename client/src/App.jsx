@@ -29,6 +29,16 @@ function App() {
   }
 
   useEffect(() => {
+      const storedUser = window.localStorage.getItem('loggedRecipeappUser')
+      if (storedUser) {
+          const parsedUser = JSON.parse(storedUser)
+          setUser(parsedUser)
+          userService.setToken(parsedUser.token)
+          recipeService.setToken(parsedUser.token)
+      }
+  }, [])
+
+  useEffect(() => {
     recipeService.getAllRecipes().then(data => setRecipes(data))
   }, [user])
 
@@ -88,7 +98,11 @@ function App() {
 
           <Route
               path="/new-recipe"
-              element={<NewRecipeForm/>}
+              element={
+              <ProtectedRoute>
+                <NewRecipeForm user={user}/>
+              </ProtectedRoute>
+              }
           />
 
           <Route
