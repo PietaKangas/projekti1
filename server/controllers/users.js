@@ -50,8 +50,8 @@ usersRouter.get('/profile', middleware.authenticateUser, async (request, respons
     console.log('request.user:', request.user)
 
     const user = await User.findById(request.user.id)
-        .populate('recipes')   // käyttäjän lisäämät reseptit
-        .populate('likedRecipes') // käyttäjän tykkäämät reseptit
+        .populate('recipes')   
+        .populate('likedRecipes') 
     if (!user) return response.status(404).json({ error: 'Käyttäjää ei löytynyt' })
     response.json(user)
   } catch (error) {
