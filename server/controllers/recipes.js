@@ -27,8 +27,8 @@ recipesRouter.get('/:id', async (request, response) => {
 
 recipesRouter.get('/', async (request, response) => {
   const recipes = await Recipe.find({})
-      .populate('user', { username: 1 })      // kuka lisäsi reseptin
-      .populate('likedBy', { username: 1 })   // ketkä ovat tykänneet
+      .populate('user', { username: 1 })      
+      .populate('likedBy', { username: 1 })   
   response.json(recipes)
 })
 
@@ -53,7 +53,7 @@ recipesRouter.post('/', middleware.authenticateUser, async (request, response) =
 
   response.status(201).json(savedRecipe)
 })
-
+/*
 recipesRouter.put('/:id', async (request, response, next) => {
   const body = request.body
 
@@ -73,7 +73,7 @@ recipesRouter.put('/:id', async (request, response, next) => {
     next(error)
   }
 })
-
+*/
 recipesRouter.put('/:id/like', middleware.authenticateUser, async (request, response, next) => {
   try {
     const recipe = await Recipe.findById(request.params.id)
